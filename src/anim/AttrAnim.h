@@ -38,13 +38,13 @@
 namespace avg {
 
 struct ObjAttrID {
-    ObjAttrID(const boost::python::object& obj, const std::string& sAttrName)
+    ObjAttrID(const boost::python::object& obj, const UTF8String& sAttrName)
         : m_ObjHash(boost::python::extract<long>(obj.attr("__hash__")())),
           m_sAttrName(sAttrName)
     {
     }
     long m_ObjHash;
-    std::string m_sAttrName;
+    UTF8String m_sAttrName;
     bool operator < (const ObjAttrID& other) const;
 };
 
@@ -58,7 +58,7 @@ class AVG_API AttrAnim: public Anim
 public:
     static int getNumRunningAnims();
 
-    AttrAnim(const boost::python::object& node, const std::string& sAttrName,
+    AttrAnim(const boost::python::object& node, const UTF8String& sAttrName,
             const boost::python::object& startCallback, 
             const boost::python::object& stopCallback);
     virtual ~AttrAnim();
@@ -78,7 +78,7 @@ private:
     void stopActiveAttrAnim();
 
     boost::python::object m_Node;
-    std::string m_sAttrName;
+    UTF8String m_sAttrName;
 
     typedef std::map<ObjAttrID, AttrAnimPtr> AttrAnimationMap;
     static AttrAnimationMap s_ActiveAnimations;

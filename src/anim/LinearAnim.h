@@ -30,7 +30,7 @@ namespace avg {
 
 class AVG_API LinearAnim: public SimpleAnim {
 public:
-    LinearAnim(const boost::python::object& node, const std::string& sAttrName, 
+    LinearAnim(const boost::python::object& node, const UTF8String& sAttrName,
             long long duration,
             const boost::python::object& pStartValue, 
             const boost::python::object& pEndValue, 

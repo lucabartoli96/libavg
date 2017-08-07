@@ -532,6 +532,28 @@ class AnimTestCase(AVGTestCase):
                  lambda: self.compareImage(keepAttrPosImgSrc),
                 ))
 
+    def testUnicodeAttributes(self):
+
+        root = self.loadEmptyScene()
+        node = avg.ImageNode(id="test", pos=(64, 30), href="rgb24-65x65.png",
+                             parent=root)
+        nodes = [node, avg.ImageNode()]
+
+        try:
+            avg.ContinuousAnim(node, u"angle", 1000, 0.5)
+            avg.EaseInOutAnim(node, u"x", 300, 0, 100, 100, 100)
+            avg.LinearAnim(node, u"angle", 1000, math.pi, math.pi)
+            avg.ParallelAnim(
+                 [avg.LinearAnim(nodes[0], u"x", 200, 0, 60),
+                 avg.LinearAnim(nodes[1], u"x", 200, 0, 120)
+                 ])
+            avg.StateAnim(
+                 [avg.AnimState(u"STATE1", avg.LinearAnim(node, "x", 200, 0, 100), u"STATE2"),
+                 avg.AnimState(u"STATE2", avg.LinearAnim(node, "x", 200, 100, 50), u"STATE1")])
+        except Exception:
+            msg = "Unicode attributes test for Anim classes failed"
+            self.fail(msg)
+
 
 def animTestSuite(tests):
     availableTests = (
@@ -554,7 +576,8 @@ def animTestSuite(tests):
         "testParallelAnimRegistry",
         "testStateAnim",
         "testStateAnimRegistry",
-        "testNonNodeAttrAnim"
+        "testNonNodeAttrAnim",
+        "testUnicodeAttributes"
         )
     return createAVGTestSuite(availableTests, AnimTestCase, tests)
 

@@ -30,7 +30,7 @@ using namespace std;
 
 namespace avg {
 
-ContinuousAnim::ContinuousAnim(const object& node, const string& sAttrName, 
+ContinuousAnim::ContinuousAnim(const object& node, const UTF8String& sAttrName,
             const object& startValue, const object& speed, bool bUseInt, 
             const object& startCallback, const object& stopCallback)
     : AttrAnim(node, sAttrName, startCallback, stopCallback),

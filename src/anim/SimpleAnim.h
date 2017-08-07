@@ -41,7 +41,7 @@ typedef boost::shared_ptr<class SimpleAnim> SimpleAnimPtr;
 class AVG_API SimpleAnim: public AttrAnim 
 {
 public:
-    SimpleAnim(const boost::python::object& node, const std::string& sAttrName,
+    SimpleAnim(const boost::python::object& node, const UTF8String& sAttrName,
             long long duration,
             const boost::python::object& pStartValue, 
             const boost::python::object& pEndValue, 

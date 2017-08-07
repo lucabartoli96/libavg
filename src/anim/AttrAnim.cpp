@@ -50,7 +50,7 @@ int AttrAnim::getNumRunningAnims()
     return s_ActiveAnimations.size();
 }
 
-AttrAnim::AttrAnim(const object& node, const string& sAttrName, 
+AttrAnim::AttrAnim(const object& node, const UTF8String& sAttrName,
         const object& startCallback, const object& stopCallback)
     : Anim(startCallback, stopCallback),
       m_Node(node),

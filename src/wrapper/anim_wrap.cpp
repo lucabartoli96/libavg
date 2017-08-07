@@ -83,7 +83,7 @@ void export_anim()
 
     class_<LinearAnim, boost::shared_ptr<LinearAnim>, bases<SimpleAnim>, 
             boost::noncopyable>("LinearAnim", no_init)
-        .def(init<const object&, const std::string&, long long, const object&, 
+        .def(init<const object&, const UTF8String&, long long, const object&,
                 const object&, optional<bool, const object&, const object&> >
                 ((bp::arg("node"), bp::arg("attrName"), bp::arg("duration"), 
                  bp::arg("startValue"), bp::arg("endValue"), bp::arg("useInt")=false,
@@ -92,7 +92,7 @@ void export_anim()
 
     class_<EaseInOutAnim, boost::shared_ptr<EaseInOutAnim>, bases<SimpleAnim>, 
             boost::noncopyable>("EaseInOutAnim", no_init)
-        .def(init<const object&, const std::string&, long long, const object&,
+        .def(init<const object&, const UTF8String&, long long, const object&,
                 const object&, long long, long long, 
                 optional<bool, const object&, const object&> >
                 ((bp::arg("node"), bp::arg("attrName"), bp::arg("duration"), 
@@ -103,7 +103,7 @@ void export_anim()
    
     class_<ContinuousAnim, boost::shared_ptr<ContinuousAnim>, bases<AttrAnim>, 
             boost::noncopyable>("ContinuousAnim", no_init)
-        .def(init<const object&, const std::string&, const object&, const object&, 
+        .def(init<const object&, const UTF8String&, const object&, const object&,
                 optional<bool, const object&, const object&> >
                 ((bp::arg("node"), bp::arg("attrName"), bp::arg("duration"), 
                  bp::arg("startValue"), bp::arg("speed"), bp::arg("useInt")=false,
@@ -128,7 +128,7 @@ void export_anim()
         ;
       
     class_<AnimState, boost::noncopyable>("AnimState", no_init)
-        .def(init<const std::string&, AnimPtr, optional<const std::string&> >
+        .def(init<const UTF8String&, AnimPtr, optional<const UTF8String&> >
                 ((bp::arg("name"), bp::arg("anim"), bp::arg("nextName")="")))
         ;
 

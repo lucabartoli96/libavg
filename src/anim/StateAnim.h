@@ -32,12 +32,12 @@
 namespace avg {
 
 struct AVG_API AnimState {
-    AnimState(const std::string& sName, AnimPtr pAnim, const std::string& sNextName = "");
+    AnimState(const UTF8String& sName, AnimPtr pAnim, const UTF8String& sNextName = "");
     AnimState();
 
-    std::string m_sName;
+    UTF8String m_sName;
     AnimPtr m_pAnim;
-    std::string m_sNextName;
+    UTF8String m_sNextName;
 };
 
 class AVG_API StateAnim: public Anim {
@@ -47,18 +47,18 @@ public:
 
     virtual void abort();
 
-    virtual void setState(const std::string& sName, bool bKeepAttr=false);
-    const std::string& getState() const;
+    virtual void setState(const UTF8String& sName, bool bKeepAttr=false);
+    const UTF8String& getState() const;
     void setDebug(bool bDebug);
     
     virtual bool step();
 
 private:
-    void switchToNewState(const std::string& sName, bool bKeepAttr);
+    void switchToNewState(const UTF8String& sName, bool bKeepAttr);
 
-    std::map<std::string, AnimState> m_States;
+    std::map<UTF8String, AnimState> m_States;
     bool m_bDebug;
-    std::string m_sCurStateName;
+    UTF8String m_sCurStateName;
 };
 
 }

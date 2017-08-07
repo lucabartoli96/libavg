@@ -28,7 +28,7 @@ using namespace std;
 
 namespace avg {
 
-LinearAnim::LinearAnim(const object& node, const string& sAttrName, long long duration,
+LinearAnim::LinearAnim(const object& node, const UTF8String& sAttrName, long long duration,
             const object& startValue, const object& endValue, bool bUseInt, 
             const object& startCallback, const object& stopCallback)
     : SimpleAnim(node, sAttrName, duration, startValue, endValue, bUseInt, startCallback,

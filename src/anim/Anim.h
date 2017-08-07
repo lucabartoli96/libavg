@@ -28,6 +28,7 @@
 
 #include "../base/IPreRenderListener.h"
 #include "../base/IPlaybackEndListener.h"
+#include "../base/UTF8String.h"
 
 #include <boost/python.hpp>
 #include <boost/shared_ptr.hpp>

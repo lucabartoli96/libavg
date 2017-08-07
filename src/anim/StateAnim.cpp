@@ -29,7 +29,7 @@ using namespace std;
 
 namespace avg {
 
-AnimState::AnimState(const string& sName, AnimPtr pAnim, const string& sNextName)
+AnimState::AnimState(const UTF8String& sName, AnimPtr pAnim, const UTF8String& sNextName)
     : m_sName(sName),
       m_pAnim(pAnim),
       m_sNextName(sNextName)
@@ -61,7 +61,7 @@ void StateAnim::abort()
     setState("");
 }
 
-void StateAnim::setState(const std::string& sName, bool bKeepAttr)
+void StateAnim::setState(const UTF8String& sName, bool bKeepAttr)
 {
     if (m_sCurStateName == sName) {
         return;
@@ -77,7 +77,7 @@ void StateAnim::setState(const std::string& sName, bool bKeepAttr)
     switchToNewState(sName, bKeepAttr);
 }
 
-const std::string& StateAnim::getState() const
+const UTF8String& StateAnim::getState() const
 {
     return m_sCurStateName;
 }
@@ -109,16 +109,16 @@ bool StateAnim::step()
     return false;
 }
 
-void StateAnim::switchToNewState(const string& sName, bool bKeepAttr)
+void StateAnim::switchToNewState(const UTF8String& sName, bool bKeepAttr)
 {
     if (m_bDebug) {
         cerr << this << " State change: '" << m_sCurStateName << "' --> '" << sName 
                 << "'" << endl;
     }
-    string sOldStateName = m_sCurStateName;
+    UTF8String sOldStateName = m_sCurStateName;
     m_sCurStateName = sName;
     if (!sName.empty()) {
-        map<string, AnimState>::iterator it = m_States.find(sName);
+        map<UTF8String, AnimState>::iterator it = m_States.find(sName);
         if (it == m_States.end()) {
             throw Exception(AVG_ERR_INVALID_ARGS, "StateAnim: State "+sName+" unknown.");
         } else {

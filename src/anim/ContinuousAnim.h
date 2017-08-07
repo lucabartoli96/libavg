@@ -30,7 +30,7 @@ namespace avg {
 
 class AVG_API ContinuousAnim: public AttrAnim {
 public:
-    ContinuousAnim(const boost::python::object& node, const std::string& sAttrName, 
+    ContinuousAnim(const boost::python::object& node, const UTF8String& sAttrName,
             const boost::python::object& startValue, 
             const boost::python::object& speed, 
             bool bUseInt=false, 

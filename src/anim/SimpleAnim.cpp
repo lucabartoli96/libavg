@@ -31,7 +31,7 @@ using namespace std;
 
 namespace avg {
    
-SimpleAnim::SimpleAnim(const object& node, const string& sAttrName, long long duration, 
+SimpleAnim::SimpleAnim(const object& node, const UTF8String& sAttrName, long long duration,
         const object& startValue, const object& endValue, bool bUseInt, 
         const object& startCallback, const object& stopCallback)
     : AttrAnim(node, sAttrName, startCallback, stopCallback),

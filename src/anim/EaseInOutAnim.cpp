@@ -31,7 +31,7 @@ using namespace std;
 
 namespace avg {
 
-EaseInOutAnim::EaseInOutAnim(const object& node, const string& sAttrName, 
+EaseInOutAnim::EaseInOutAnim(const object& node, const UTF8String& sAttrName,
             long long duration, const object& startValue, const object& endValue, 
             long long easeInDuration, long long easeOutDuration, bool bUseInt, 
             const object& startCallback, const object& stopCallback)
