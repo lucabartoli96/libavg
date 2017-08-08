@@ -27,6 +27,8 @@
 #include "../base/GLMHelper.h"
 #include "Pixel32.h"
 
+#include "../base/UTF8String.h"
+
 #include <boost/shared_ptr.hpp>
 #include <string>
 
@@ -36,7 +38,7 @@ class AVG_API Color
 {
 public:
     Color();
-    Color(const std::string& s);
+    Color(const UTF8String& s);
     Color(unsigned char r, unsigned char g, unsigned char b);
     Color(const glm::vec3& v);
     ~Color();
@@ -50,7 +52,7 @@ public:
     void setB(unsigned char b);
 
     operator Pixel32() const;
-    operator std::string() const;
+    operator UTF8String() const;
     operator glm::vec3() const;
     bool operator ==(const Color& c) const;
     bool operator !=(const Color& c) const;
@@ -65,7 +67,7 @@ private:
     unsigned char m_G;
     unsigned char m_B;
 
-    std::string m_sOrig;
+    UTF8String m_sOrig;
 };
 
 AVG_API std::ostream& operator <<(std::ostream& os, const Color& col);

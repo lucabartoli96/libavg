@@ -266,7 +266,7 @@ void ArgList::setArgValue(const std::string & sName, const std::string & sValue)
         fromString(sValue, v);
         pCollVec2VectorArg->setValue(v);
     } else if (pColorArg) {
-        pColorArg->setValue(sValue);
+        pColorArg->setValue(UTF8String(sValue));
     } else {
         AVG_ASSERT(false);
     }   

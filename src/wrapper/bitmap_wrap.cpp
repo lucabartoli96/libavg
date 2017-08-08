@@ -237,7 +237,7 @@ void export_bitmap()
     implicitly_convertible<glm::vec2, ConstVec2>();
 
     class_<Color, boost::shared_ptr<Color> >("Color", no_init)
-        .def(init<string>())
+        .def(init<UTF8String>())
         .def(init<unsigned char, unsigned char, unsigned char>())
         .def(init<const glm::vec3&>())
         .add_property("r", &Color::getR, "")
@@ -252,7 +252,7 @@ void export_bitmap()
         .staticmethod("fromLch")
     ;
     implicitly_convertible<glm::vec3, Color>();
-    implicitly_convertible<string, Color>();
+    implicitly_convertible<UTF8String, Color>();
 
     enum_<PixelFormat>("pixelformat")
         .value("B5G6R5", B5G6R5)

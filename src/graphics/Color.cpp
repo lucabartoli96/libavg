@@ -38,7 +38,7 @@ Color::Color()
 {
 }
 
-Color::Color(const std::string& s)
+Color::Color(const UTF8String& s)
     : m_sOrig(s)
 {
     int numChars = 0;
@@ -121,14 +121,14 @@ Color::operator Pixel32() const
     return Pixel32(m_R, m_G, m_B);
 }
 
-Color::operator string() const
+Color::operator UTF8String() const
 {
     if (m_sOrig == "") {
         stringstream s;
         s.fill('0');
         s << hex << std::uppercase << setw(2) << int(m_R) << setw(2) << int(m_G)
                 << setw(2) << int(m_B);
-        return s.str();
+        return UTF8String(s.str());
     } else {
         return m_sOrig;
     }

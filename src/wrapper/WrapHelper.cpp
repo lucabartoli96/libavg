@@ -275,6 +275,9 @@ struct vec3_from_python
         if (PyString_Check(obj_ptr)) {
             return 0;
         }
+        if (PyUnicode_Check(obj_ptr)) {
+            return 0;
+        }
 
         return obj_ptr;
     }

@@ -103,6 +103,7 @@ extern template class Arg<int>;
 extern template class Arg<bool>;
 extern template class Arg<float>;
 extern template class Arg<std::string>;
+extern template class Arg<UTF8String>;
 extern template class Arg<glm::vec2>;
 extern template class Arg<glm::vec3>;
 extern template class Arg<glm::ivec3>;

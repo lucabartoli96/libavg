@@ -29,6 +29,7 @@
 #include "../player/InvertFXNode.h"
 #include "../player/NullFXNode.h"
 #include "../player/ShadowFXNode.h"
+#include "../base/UTF8String.h"
 
 #include <boost/shared_ptr.hpp>
 
@@ -98,9 +99,9 @@ void export_fx()
 
     class_<ShadowFXNode, bases<FXNode>, boost::shared_ptr<ShadowFXNode>,
             boost::noncopyable>("ShadowFXNode", 
-            init<optional<glm::vec2, float, float, std::string> >(
+            init<optional<glm::vec2, float, float, UTF8String> >(
                 (bp::arg("offset")=glm::vec2(0,0), bp::arg("radius")=1.f,
-                 bp::arg("opacity")=1.f, bp::arg("color")=std::string("FFFFFF"))
+                 bp::arg("opacity")=1.f, bp::arg("color")=UTF8String("FFFFFF"))
             ))
         .add_property("offset", &ShadowFXNode::getOffset, &ShadowFXNode::setOffset)
         .add_property("radius", &ShadowFXNode::getRadius, &ShadowFXNode::setRadius)

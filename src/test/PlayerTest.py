@@ -24,6 +24,7 @@ import threading
 
 from libavg import avg, player
 from libavg.testcase import *
+import sys
 
 class PlayerTestCase(AVGTestCase):
     def __init__(self, testFuncName):
@@ -126,6 +127,32 @@ class PlayerTestCase(AVGTestCase):
         col = avg.Color.mix(avg.Color("FFFFFF"), avg.Color("FF0000"), 0.5)
         self.assertEqual(col, avg.Color("FF9E81"))
         self.assertEqual(str(col), "FF9E81")
+
+    def testUnicodeColor(self):
+        try:
+            col = avg.Color(u"0080FF")
+            self.assertEqual(col, avg.Color(0, 128, 255))
+            self.assertEqual(col, avg.Color((0, 128, 255)))
+            self.assertEqual(col, (0, 128, 255))
+            self.assertEqual(col, u"0080FF")
+            self.assertEqual(col.r, 0)
+            self.assertEqual(col.g, 128)
+            self.assertEqual(col.b, 255)
+            self.assertEqual(avg.Color(u"FF6600"), avg.Color(u"F60"))
+            col = avg.Color.mix(avg.Color(u"FF0000"), avg.Color(u"0000FF"), 1)
+            self.assertEqual(col, avg.Color(u"FF0000"))
+            col = avg.Color.mix(avg.Color(u"FF0000"), avg.Color(u"0000FF"), 0)
+            self.assertEqual(col, avg.Color(u"0000FF"))
+            col = avg.Color.fromLch(60, 74, 126)
+            self.assertEqual(col, u"5CA20D")
+            self.assertRaises(avg.Exception, lambda: avg.Color(u"1234567"))
+            self.assertRaises(avg.Exception, lambda: avg.Color(u"xxx"))
+            self.assertRaises(avg.Exception, lambda: avg.Color(u"xxxxxx"))
+            col = avg.Color.mix(avg.Color(u"FFFFFF"), avg.Color(u"FF0000"), 0.5)
+            self.assertEqual(col, avg.Color(u"FF9E81"))
+            self.assertEqual(str(col), u"FF9E81")
+        except Exception:
+            self.fail("Failed to create Color object using unicode string")
 
     def testBasics(self):
         def getFramerate():
@@ -936,5 +963,6 @@ def playerTestSuite(tests):
             "testValidateXml",
             "testSetWindowTitle",
             "testWindowFrame",
+            "testUnicodeColor"
             )
     return createAVGTestSuite(availableTests, PlayerTestCase, tests)

@@ -51,6 +51,7 @@
 #include "../base/TestSuite.h"
 #include "../base/Exception.h"
 #include "../base/MathHelper.h"
+#include "../base/UTF8String.h"
 
 #ifdef _WIN32
 #pragma warning(push)
@@ -149,7 +150,7 @@ public:
         TEST(c.getR() == 255);
         TEST(c.getG() == 128);
         TEST(c.getB() == 0);
-        TEST(c == string("FF8000"));
+        TEST(c == UTF8String("FF8000"));
         TEST_EXCEPTION(Color c1("foo"), Exception);
         {
             XYZColor xyz = RGB2XYZ(c);
