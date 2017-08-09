@@ -205,12 +205,12 @@ void AreaNode::setPivot(const glm::vec2& pt)
     m_bTransformChanged = true;
 }
 
-const std::string& AreaNode::getElementOutlineColor() const
+const UTF8String& AreaNode::getElementOutlineColor() const
 {
     return m_sElementOutlineColor;
 }
 
-void AreaNode::setElementOutlineColor(const std::string& sColor)
+void AreaNode::setElementOutlineColor(const UTF8String& sColor)
 {
     m_sElementOutlineColor = sColor;
     if (sColor == "") {

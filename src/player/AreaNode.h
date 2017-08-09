@@ -29,6 +29,8 @@
 #include "../base/GLMHelper.h"
 #include "../base/Rect.h"
 
+#include "../base/UTF8String.h"
+
 #include <boost/shared_ptr.hpp>
 
 #include <string>
@@ -78,8 +80,8 @@ class AVG_API AreaNode: public Node
         virtual glm::vec2 getPivot() const;
         void setPivot(const glm::vec2& pt);
         
-        const std::string& getElementOutlineColor() const;
-        void setElementOutlineColor(const std::string& sColor);
+        const UTF8String& getElementOutlineColor() const;
+        void setElementOutlineColor(const UTF8String& sColor);
 
         virtual glm::vec2 toLocal(const glm::vec2& globalPos) const;
         virtual glm::vec2 toGlobal(const glm::vec2& localPos) const;
@@ -112,7 +114,7 @@ class AVG_API AreaNode: public Node
         float m_Angle;
         glm::vec2 m_Pivot;
         bool m_bHasCustomPivot;
-        std::string m_sElementOutlineColor;
+        UTF8String m_sElementOutlineColor;
         Pixel32 m_ElementOutlineColor;
         
         glm::vec2 m_UserSize;
