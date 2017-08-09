@@ -76,7 +76,7 @@ public:
     const unsigned char* getPixels() const;
     void setPixels(const unsigned char* pPixels, int stride=0);
     bool ownsBits() const;
-    const std::string& getName() const;
+    const UTF8String& getName() const;
     int getBytesPerPixel() const;
     int getLineLen() const;
     int getMemNeeded() const;

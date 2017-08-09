@@ -630,7 +630,7 @@ void Bitmap::setPixels(const unsigned char* pPixels, int stride)
     }
 }
 
-const string& Bitmap::getName() const
+const UTF8String& Bitmap::getName() const
 {
     return m_sName;
 }
