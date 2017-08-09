@@ -487,6 +487,19 @@ class FXTestCase(AVGTestCase):
         avg.ImageNode(id="test", pos=(32,0), href="rgb24alpha-32x32.png", parent=root)
         return canvas
 
+    def testUnicodeAttributes(self):
+
+        try:
+            effect = avg.ChromaKeyFXNode()
+            effect.color = u"FF0000"
+        except Exception:
+            self.fail("Failed to set color attribute on ChromaKeyFXNode object using unicode string")
+
+        try:
+            effect = avg.ShadowFXNode(color=u"F0000F")
+            effect.color = u"FFF000"
+        except Exception:
+            self.fail("Failed to set color attribute on ShadowFXNode object using unicode string")
 
 def fxTestSuite(tests):
     availableTests = [
@@ -507,5 +520,6 @@ def fxTestSuite(tests):
             "testContrast",
             "testFXUpdate",
             "testChromaKeyFX",
+            "testUnicodeAttributes"
         ]
     return createAVGTestSuite(availableTests, FXTestCase, tests)
