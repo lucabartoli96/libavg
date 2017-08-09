@@ -486,7 +486,7 @@ void GLContext::ensureFullShaders(const string& sContext) const
 
 }
 
-GLContext::BlendMode GLContext::stringToBlendMode(const string& s)
+GLContext::BlendMode GLContext::stringToBlendMode(const UTF8String& s)
 {
     if (s == "blend") {
         return GLContext::BLEND_BLEND;

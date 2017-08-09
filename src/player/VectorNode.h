@@ -62,8 +62,8 @@ class AVG_API VectorNode : public Node
         void setTexHRef(const UTF8String& href);
         void setBitmap(BitmapPtr pBmp);
 
-        const std::string& getBlendModeStr() const;
-        void setBlendModeStr(const std::string& sBlendMode);
+        const UTF8String& getBlendModeStr() const;
+        void setBlendModeStr(const UTF8String& sBlendMode);
 
         virtual void preRender(const VertexArrayPtr& pVA, bool bIsParentActive, 
                 float parentEffectiveOpacity);
@@ -80,8 +80,8 @@ class AVG_API VectorNode : public Node
         void setStrokeWidth(float width);
         float getStrokeWidth() const;
 
-        static LineJoin string2LineJoin(const std::string& s);
-        static std::string lineJoin2String(LineJoin lineJoin);
+        static LineJoin string2LineJoin(const UTF8String& s);
+        static UTF8String lineJoin2String(LineJoin lineJoin);
 
         virtual std::string dump(int indent = 0);
 
@@ -114,7 +114,7 @@ class AVG_API VectorNode : public Node
         Color m_Color;
         float m_StrokeWidth;
         UTF8String m_TexHRef;
-        std::string m_sBlendMode;
+        UTF8String m_sBlendMode;
 
         bool m_bDrawNeeded;
         bool m_bVASizeChanged;

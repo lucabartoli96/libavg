@@ -57,7 +57,7 @@ void VectorNode::registerType()
                 offsetof(VectorNode, m_Color)))
         .addArg(Arg<float>("strokewidth", 1, false, offsetof(VectorNode, m_StrokeWidth)))
         .addArg(Arg<UTF8String>("texhref", "", false, offsetof(VectorNode, m_TexHRef)))
-        .addArg(Arg<string>("blendmode", "blend", false, 
+        .addArg(Arg<UTF8String>("blendmode", "blend", false,
                 offsetof(VectorNode, m_sBlendMode)))
         ;
     TypeRegistry::get()->registerType(def);
@@ -131,12 +131,12 @@ void VectorNode::setBitmap(BitmapPtr pBmp)
     setDrawNeeded();
 }
 
-const string& VectorNode::getBlendModeStr() const
+const UTF8String& VectorNode::getBlendModeStr() const
 {
     return m_sBlendMode;
 }
 
-void VectorNode::setBlendModeStr(const string& sBlendMode)
+void VectorNode::setBlendModeStr(const UTF8String& sBlendMode)
 {
     m_sBlendMode = sBlendMode;
     m_BlendMode = GLContext::stringToBlendMode(sBlendMode);
@@ -219,7 +219,7 @@ GLContext::BlendMode VectorNode::getBlendMode() const
     return m_BlendMode;
 }
 
-VectorNode::LineJoin VectorNode::string2LineJoin(const string& s)
+VectorNode::LineJoin VectorNode::string2LineJoin(const UTF8String& s)
 {
     if (s == "miter") {
         return LJ_MITER;
@@ -231,7 +231,7 @@ VectorNode::LineJoin VectorNode::string2LineJoin(const string& s)
     }
 }
 
-string VectorNode::lineJoin2String(LineJoin lineJoin)
+UTF8String VectorNode::lineJoin2String(LineJoin lineJoin)
 {
     switch(lineJoin) {
         case LJ_MITER:

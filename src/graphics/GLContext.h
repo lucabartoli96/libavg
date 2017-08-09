@@ -27,6 +27,7 @@
 #include "GLConfig.h"
 
 #include "../base/GLMHelper.h"
+#include "../base/UTF8String.h"
 
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/tss.hpp>
@@ -84,7 +85,7 @@ public:
     static void mandatoryCheckError(const char* pszWhere);
     void ensureFullShaders(const std::string& sContext) const;
 
-    static BlendMode stringToBlendMode(const std::string& s);
+    static BlendMode stringToBlendMode(const UTF8String& s);
 
     static GLContext* getCurrent();
 

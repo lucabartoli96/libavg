@@ -39,7 +39,7 @@ void PolyLineNode::registerType()
     vector<float> vd;
     TypeDefinition def = TypeDefinition("polyline", "vectornode", 
             ExportedObject::buildObject<PolyLineNode>)
-        .addArg(Arg<string>("linejoin", "bevel"))
+        .addArg(Arg<UTF8String>("linejoin", "bevel"))
         .addArg(Arg<vector<glm::vec2> >("pos", v, false, offsetof(PolyLineNode, m_Pts)))
         .addArg(Arg<vector<float> >("texcoords", vd, false,
                 offsetof(PolyLineNode, m_TexCoords)))
@@ -55,7 +55,7 @@ PolyLineNode::PolyLineNode(const ArgList& args, const string& sPublisherName)
         throw(Exception(AVG_ERR_OUT_OF_RANGE, 
                 "Too many texture coordinates in polyline"));
     }
-    setLineJoin(args.getArgVal<string>("linejoin"));
+    setLineJoin(args.getArgVal<UTF8String>("linejoin"));
     calcPolyLineCumulDist(m_CumulDist, m_Pts, false);
 }
 
@@ -93,12 +93,12 @@ void PolyLineNode::setTexCoords(const vector<float>& coords)
     setDrawNeeded();
 }
 
-string PolyLineNode::getLineJoin() const
+UTF8String PolyLineNode::getLineJoin() const
 {
     return lineJoin2String(m_LineJoin);
 }
 
-void PolyLineNode::setLineJoin(const string& s)
+void PolyLineNode::setLineJoin(const UTF8String& s)
 {
     m_LineJoin = string2LineJoin(s);
     setDrawNeeded();

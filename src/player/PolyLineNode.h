@@ -28,6 +28,8 @@
 #include "../graphics/Pixel32.h"
 #include "../base/WideLine.h"
 
+#include "../base/UTF8String.h"
+
 #include <vector>
 
 namespace avg {
@@ -46,8 +48,8 @@ class AVG_API PolyLineNode : public VectorNode
         const std::vector<float>& getTexCoords() const;
         void setTexCoords(const std::vector<float>& coords);
 
-        std::string getLineJoin() const;
-        void setLineJoin(const std::string& s);
+        UTF8String getLineJoin() const;
+        void setLineJoin(const UTF8String& s);
 
         virtual void calcVertexes(const VertexDataPtr& pVertexData, Pixel32 color);
 
