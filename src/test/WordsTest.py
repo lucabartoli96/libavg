@@ -104,17 +104,19 @@ class WordsTestCase(AVGTestCase):
 
         try:
             fontStyle = avg.FontStyle(font=u"Bitstream Vera Sans", variant=u"Roman",
-                    alignment=u"left", wrapmode=u"word")
+                    color=u"0F0000", alignment=u"left", wrapmode=u"word")
+            fontStyle.color = u"F00"
             self.assert_(fontStyle.font == "Bitstream Vera Sans")
             avg.WordsNode(fontstyle=fontStyle, text="Bitstream Vera Sans")
 
-        except avg.Exception as e:
+        except avg.Exception:
             msg = "Failed to create FontStyle object by using unicode strings as parameters"
             self.fail(msg)
 
         try:
-            avg.WordsNode(font=u"Bitstream Vera Sans", variant=u"Roman",
-                    text=u"Bold", alignment=u"left", wrapmode=u"word")
+            wordsNode = avg.WordsNode(font=u"Bitstream Vera Sans", variant=u"Roman",
+                    color=u"F00000", text=u"Bold", alignment=u"left", wrapmode=u"word")
+            wordsNode.color = u"0F0"
         except avg.Exception:
             msg = "Failed to create WordsNode object by using unicode strings as parameters"
             self.fail(msg)
