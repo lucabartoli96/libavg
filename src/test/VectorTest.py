@@ -810,8 +810,38 @@ class VectorTestCase(AVGTestCase):
                  lambda: self.fakeClick(20, 20),
                  lambda: self.assert_(self.onDownCalled)
                 ))
-        
-        
+
+    def testUnicodeAttributes(self):
+        try:
+            vector = avg.LineNode(color=u"F00000", blendmode=u"add")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector = avg.RectNode(color=u"F00000", blendmode=u"add", fillcolor=u"F000A0")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector.fillcolor = u"FF0F00"
+            vector = avg.CurveNode(color=u"F00000", blendmode=u"add")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector = avg.PolyLineNode(color=u"F00000", blendmode=u"add", linejoin=u"miter")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector.linejoin = u"bevel"
+            vector = avg.PolygonNode(color=u"F00000", blendmode=u"add", fillcolor=u"F000A0", linejoin=u"miter")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector.fillcolor = u"FF0F00"
+            vector.linejoin = u"bevel"
+            vector = avg.CircleNode(color=u"F00000", blendmode=u"add", fillcolor=u"F000A0")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector.fillcolor = u"FF0F00"
+            vector = avg.MeshNode(color=u"F00000", blendmode=u"add")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+        except Exception:
+            self.fail("Failed to set attribute on vector objects using unicode string")
+
 def vectorTestSuite(tests):
     availableTests = (
             "testLine",
@@ -833,6 +863,7 @@ def vectorTestSuite(tests):
             "testPointInPolygon",
             "testCircle",
             "testMesh",
-            "testInactiveVector"
+            "testInactiveVector",
+            "testUnicodeAttributes"
             )
     return createAVGTestSuite(availableTests, VectorTestCase, tests)
