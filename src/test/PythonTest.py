@@ -306,6 +306,23 @@ class PythonTestCase(AVGTestCase):
         self.assertRaises(avg.Exception,
                 lambda: sprites.Spritesheet("media/spritesheet_broken.xml"))
 
+    def testUnicodeAttributes(self):
+        try:
+            vector = geom.Arc(radius=40, startangle=0, endangle=1.57, color=u"FF0000", blendmode=u"add")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector = geom.PieSlice(radius=40, startangle=0, endangle=1.57, color=u"F00000",
+                                   blendmode=u"add", fillcolor=u"F000A0")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector.fillcolor = u"FF0F00"
+            vector = geom.RoundedRect(size=(64, 64), radius=5, color=u"F00000", blendmode=u"add",
+                                      fillcolor=u"F000A0")
+            vector.color = u"FFF000"
+            vector.blendmode = u"blend"
+            vector.fillcolor = u"FF0F00"
+        except Exception:
+            self.fail("Failed to set attribute on geom objects using unicode string")
 
 def pythonTestSuite(tests):
     availableTests = (
@@ -319,6 +336,7 @@ def pythonTestSuite(tests):
         "testPersistValidation",
         "testSprite",
         "testSpriteErrors",
+        "testUnicodeAttributes"
         )
     
     return createAVGTestSuite(availableTests, PythonTestCase, tests)
