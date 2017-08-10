@@ -926,6 +926,29 @@ class PlayerTestCase(AVGTestCase):
         avg.ImageNode(pos=(10,10), size=(32,32), href="rgb24-65x65.png", parent=innerDiv)
         return root
 
+    def testUnicodePlayer(self):
+        self.__initDefaultScene()
+        try:
+            player.setWindowTitle(u"title1")
+            player.setWindowConfig(u"avgwindowconfig.xml")
+            player.loadFile(u"image.avg")
+            player.loadString(u"<avg width=\"400\" height=\"300\"></avg>")
+            player.createNode(u"""
+                                      <div id="nestedavg" x="40" y="30" width="80" height="60" crop="True">
+                                        <div id="nestedavg2" crop="True">
+                                          <div id="nestedavg3" crop="True">
+                                            <image id="img" x="10" y="10" width="40" height="40" 
+                                                    href="rgb24-64x64.png"/>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    """)
+            player.createNode(u"words", {})
+            player.getElementByID(u'nestedavg')
+            player.getConfigOption(u"scr", u"bpp")
+        except Exception:
+            self.fail("Failed to set Player attributes using unicode strings")
+
 def playerTestSuite(tests):
     availableTests = (
             "testPoint",
@@ -963,6 +986,7 @@ def playerTestSuite(tests):
             "testValidateXml",
             "testSetWindowTitle",
             "testWindowFrame",
-            "testUnicodeColor"
+            "testUnicodeColor",
+            "testUnicodePlayer"
             )
     return createAVGTestSuite(availableTests, PlayerTestCase, tests)

@@ -22,7 +22,7 @@
 
 import platform
 
-from libavg import player
+from libavg import player, avg
 from libavg.testcase import *
 
 class PluginTestCase(AVGTestCase):
@@ -62,6 +62,22 @@ class PluginTestCase(AVGTestCase):
                  lambda: self.compareImage("testplugin2"),
                 ))
 
+    def testUnicodeAttributes(self):
+        try:
+            if platform.system() != 'Windows':
+                if os.getenv('srcdir') in ('.', None):
+                    player.pluginPath += u":../.."
+                else:
+                    # make distcheck
+                    player.pluginPath += u":../../_build/src/test/plugin/.libs"
+            player.loadPlugin(u"colorplugin")
+        except Exception as e:
+            # Hack!!!
+            if type(e) != avg.Exception:
+                self.fail("Failed to set pluginpath and to load plugin using unicode strings")
+
+
 def pluginTestSuite (tests):
-    availableTests = ("testColorNodePlugin",)
+    availableTests = ("testColorNodePlugin",
+                      "testUnicodeAttributes")
     return createAVGTestSuite(availableTests, PluginTestCase, tests)
