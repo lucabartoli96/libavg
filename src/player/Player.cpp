@@ -236,14 +236,14 @@ void Player::setWindowPos(int x, int y)
     wp.m_Pos.y = y;
 }
 
-void Player::setWindowTitle(const string& sTitle)
+void Player::setWindowTitle(const UTF8String& sTitle)
 {
     errorIfPlaying("Player.setWindowTitle");
     WindowParams& wp = m_DP.getWindowParams(0);
     wp.m_sTitle = sTitle;
 }
 
-void Player::setWindowConfig(const string& sFileName)
+void Player::setWindowConfig(const UTF8String& sFileName)
 {
     m_DP.setConfig(sFileName);
 }
@@ -320,7 +320,7 @@ ImageCache* Player::getImageCache()
     return ImageCache::get();
 }
 
-CanvasPtr Player::loadFile(const string& sFilename)
+CanvasPtr Player::loadFile(const UTF8String& sFilename)
 {
     errorIfPlaying("Player.loadFile");
     NodePtr pNode = loadMainNodeFromFile(sFilename);
@@ -333,7 +333,7 @@ CanvasPtr Player::loadFile(const string& sFilename)
     return m_pMainCanvas;
 }
 
-CanvasPtr Player::loadString(const string& sAVG)
+CanvasPtr Player::loadString(const UTF8String& sAVG)
 {
     errorIfPlaying("Player.loadString");
     if (m_pMainCanvas) {
@@ -447,7 +447,7 @@ void Player::newCanvasDependency()
     }
 }
 
-NodePtr Player::loadMainNodeFromFile(const string& sFilename)
+NodePtr Player::loadMainNodeFromFile(const UTF8String& sFilename)
 {
     string sRealFilename;
     AVG_TRACE(Logger::category::MEMORY, Logger::severity::INFO,
@@ -474,7 +474,7 @@ NodePtr Player::loadMainNodeFromFile(const string& sFilename)
     return pNode;
 }
 
-NodePtr Player::loadMainNodeFromString(const string& sAVG)
+NodePtr Player::loadMainNodeFromString(const UTF8String& sAVG)
 {
     AVG_TRACE(Logger::category::MEMORY, Logger::severity::INFO, "Player::loadString()");
 
@@ -831,7 +831,7 @@ bool Player::isCursorShown()
     return m_DP.isCursorVisible();
 }
 
-NodePtr Player::getElementByID(const std::string& sID)
+NodePtr Player::getElementByID(const UTF8String& sID)
 {
     if (m_pMainCanvas) {
         return m_pMainCanvas->getElementByID(sID);
@@ -1227,7 +1227,7 @@ DisplayEnginePtr Player::safeGetDisplayEngine()
 
 }
 
-NodePtr Player::createNode(const string& sType,
+NodePtr Player::createNode(const UTF8String& sType,
         const py::dict& params, const boost::python::object& self)
 {
     DivNodePtr pParentNode;
@@ -1265,7 +1265,7 @@ NodePtr Player::createNode(const string& sType,
     return pNode;
 }
 
-NodePtr Player::createNodeFromXmlString(const string& sXML)
+NodePtr Player::createNodeFromXmlString(const UTF8String& sXML)
 {
     xmlPedanticParserDefault(1);
     xmlDoValidityCheckingDefaultValue =0;
@@ -1594,7 +1594,7 @@ float Player::getVolume() const
     return m_Volume;
 }
 
-string Player::getConfigOption(const string& sSubsys, const string& sName) const
+UTF8String Player::getConfigOption(const UTF8String& sSubsys, const UTF8String& sName) const
 {
     const string* psValue = ConfigMgr::get()->getOption(sSubsys, sName);
     if (!psValue) {
@@ -1711,17 +1711,17 @@ int Player::addTimeout(Timeout* pTimeout)
     return pTimeout->getID();
 }
 
-void Player::setPluginPath(const string& newPath)
+void Player::setPluginPath(const UTF8String& newPath)
 {
     PluginManager::get().setSearchPath(newPath);
 }
 
-string Player::getPluginPath() const
+UTF8String Player::getPluginPath() const
 {
     return  PluginManager::get().getSearchPath();
 }
 
-py::object Player::loadPlugin(const std::string& name)
+py::object Player::loadPlugin(const UTF8String& name)
 {
     return PluginManager::get().loadPlugin(name);
 }

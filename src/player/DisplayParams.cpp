@@ -56,7 +56,7 @@ void DisplayParams::calcWindowSizes()
     }
 }
 
-void DisplayParams::setConfig(const std::string& sFilename)
+void DisplayParams::setConfig(const UTF8String& sFilename)
 {
     m_Windows.clear();
 

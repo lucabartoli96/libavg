@@ -62,18 +62,18 @@ PluginManager::PluginManager()
             getPath(getAvgLibPath()) + "plugin");
 }
 
-void PluginManager::setSearchPath(const string& sNewPath)
+void PluginManager::setSearchPath(const UTF8String& sNewPath)
 {
     m_sCurrentSearchPath = sNewPath;
     parsePath(m_sCurrentSearchPath);
 }
 
-string PluginManager::getSearchPath() const
+UTF8String PluginManager::getSearchPath() const
 {
     return m_sCurrentSearchPath;
 }
     
-py::object PluginManager::loadPlugin(const std::string& sPluginName)
+py::object PluginManager::loadPlugin(const UTF8String& sPluginName)
 {
     // is it loaded aready?
     PluginMap::iterator i = m_LoadedPlugins.find(sPluginName);
@@ -122,7 +122,7 @@ string PluginManager::checkDirectory(const string& sDirectory)
     return sFixedDirectory;
 }
 
-void PluginManager::parsePath(const string& sPath)
+void PluginManager::parsePath(const UTF8String& sPath)
 {
     // break the string into colon separated components
     // and make sure each component has a trailing slash

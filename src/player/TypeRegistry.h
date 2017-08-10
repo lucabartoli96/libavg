@@ -27,6 +27,7 @@
 #include "../api.h"
 #include "WrapPython.h"
 #include "TypeDefinition.h"
+#include "../base/UTF8String.h"
 
 #include <map>
 #include <string>
@@ -41,9 +42,9 @@ public:
     
     void registerType(const TypeDefinition& def, const char* pParentNames[] = 0);
     void updateDefinition(const TypeDefinition& def);
-    TypeDefinition& getTypeDef(const std::string& Type);
-    ExportedObjectPtr createObject(const std::string& Type, const xmlNodePtr xmlNode);
-    ExportedObjectPtr createObject(const std::string& Type, const py::dict& PyDict);
+    TypeDefinition& getTypeDef(const UTF8String& Type);
+    ExportedObjectPtr createObject(const UTF8String& Type, const xmlNodePtr xmlNode);
+    ExportedObjectPtr createObject(const UTF8String& Type, const py::dict& PyDict);
     
     std::string getDTD() const;
     

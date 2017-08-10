@@ -77,7 +77,7 @@ void TypeRegistry::updateDefinition(const TypeDefinition& def)
     m_TypeDefs[def.getName()] = def;
 }
 
-ExportedObjectPtr TypeRegistry::createObject(const string& sType, 
+ExportedObjectPtr TypeRegistry::createObject(const UTF8String& sType,
         const xmlNodePtr xmlNode)
 {
     const TypeDefinition& def = getTypeDef(sType);
@@ -88,7 +88,7 @@ ExportedObjectPtr TypeRegistry::createObject(const string& sType,
     return pObj;
 }
 
-ExportedObjectPtr TypeRegistry::createObject(const string& sType, const py::dict& pyDict)
+ExportedObjectPtr TypeRegistry::createObject(const UTF8String& sType, const py::dict& pyDict)
 {
     const TypeDefinition& def = getTypeDef(sType);
     py::dict effParams;
@@ -129,7 +129,7 @@ string TypeRegistry::getDTD() const
     return ss.str();
 }
 
-TypeDefinition& TypeRegistry::getTypeDef(const string& sType)
+TypeDefinition& TypeRegistry::getTypeDef(const UTF8String& sType)
 {
     TypeDefMap::iterator it = m_TypeDefs.find(sType);
     if (it == m_TypeDefs.end()) {

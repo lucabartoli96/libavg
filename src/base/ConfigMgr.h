@@ -25,6 +25,9 @@
 #include "../api.h"
 
 #include "GLMHelper.h"
+
+#include "../base/UTF8String.h"
+
 #include <libxml/parser.h>
 
 #include <string>
@@ -50,9 +53,9 @@ public:
     void addOption(const std::string& sSubsys, const std::string& sName,
             const std::string& sDefault);
 
-    const ConfigOptionVector* getOptions(const std::string& sSubsys) const;
-    const std::string* getOption(const std::string& sSubsys, 
-            const std::string& sName) const;
+    const ConfigOptionVector* getOptions(const UTF8String& sSubsys) const;
+    const std::string* getOption(const UTF8String& sSubsys,
+            const UTF8String& sName) const;
     bool getBoolOption(const std::string& sSubsys, 
             const std::string& sName, bool bDefault) const;
     int getIntOption(const std::string& sSubsys, 
@@ -77,7 +80,7 @@ private:
     void setOption(ConfigOptionVector& optionVector, const std::string& sName,
             const std::string& sValue);
 
-    typedef std::map<std::string, ConfigOptionVector> SubsysOptionMap;
+    typedef std::map<UTF8String, ConfigOptionVector> SubsysOptionMap;
     SubsysOptionMap m_SubsysOptionMap;
 
     std::string m_sFName;

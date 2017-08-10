@@ -29,6 +29,8 @@
 
 #include "../base/Exception.h"
 
+#include "../base/UTF8String.h"
+
 #include <map>
 #include <vector>
 #include <memory>
@@ -49,16 +51,16 @@ public:
     
     static PluginManager& get();
     
-    void setSearchPath(const std::string& aNewPath);
-    std::string getSearchPath() const;
+    void setSearchPath(const UTF8String& aNewPath);
+    UTF8String getSearchPath() const;
     
-    py::object loadPlugin(const std::string& aPluginName);
+    py::object loadPlugin(const UTF8String& aPluginName);
 
 private:
     PluginManager();    
     
     std::string checkDirectory(const std::string& sDirectory);
-    void parsePath(const std::string& sPath);
+    void parsePath(const UTF8String& sPath);
     std::string locateSharedObject(const std::string& sPluginName);
     void* internalLoadPlugin(const std::string& sPluginPath,
             const std::string& sPluginName);
@@ -68,7 +70,7 @@ private:
     typedef std::map<std::string, std::pair<void*, int> > PluginMap;
     PluginMap m_LoadedPlugins;
     std::vector<std::string> m_PathComponents;
-    std::string m_sCurrentSearchPath;    
+    UTF8String m_sCurrentSearchPath;
 };
     
 }

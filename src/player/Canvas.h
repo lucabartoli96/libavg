@@ -36,6 +36,8 @@
 #include "../graphics/OGLHelper.h"
 #include "../graphics/SubVertexArray.h"
 
+#include "../base/UTF8String.h"
+
 #include <map>
 #include <string>
 #include <vector>
@@ -81,10 +83,10 @@ class AVG_API Canvas: public ExportedObject
         virtual void stopPlayback(bool bIsAbort);
        
         CanvasNodePtr getRootNode() const;
-        NodePtr getElementByID(const std::string& id);
+        NodePtr getElementByID(const UTF8String& id);
         void registerNode(NodePtr pNode);
         void addNodeID(NodePtr pNode);
-        void removeNodeID(const std::string& id);
+        void removeNodeID(const UTF8String& id);
         virtual void doFrame(bool bPythonAvailable);
         IntPoint getSize() const;
         virtual BitmapPtr screenshot() const = 0;
@@ -127,7 +129,7 @@ class AVG_API Canvas: public ExportedObject
         VertexArrayPtr m_pVertexArray;
         SubVertexArray m_StdSubVA;
        
-        typedef std::map<std::string, NodePtr> NodeIDMap;
+        typedef std::map<UTF8String, NodePtr> NodeIDMap;
         NodeIDMap m_IDMap;
 
         Signal<IPlaybackEndListener> m_PlaybackEndSignal;

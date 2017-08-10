@@ -27,6 +27,8 @@
 #include "../base/GLMHelper.h"
 #include "../base/Rect.h"
 
+#include "../base/UTF8String.h"
+
 namespace avg {
 
 struct AVG_API WindowParams {
@@ -41,7 +43,7 @@ struct AVG_API WindowParams {
     IntRect m_Viewport;
     int m_DisplayServer;
     bool m_bHasWindowFrame;
-    std::string m_sTitle;
+    UTF8String m_sTitle;
 };
 
 }

@@ -88,7 +88,7 @@ void Canvas::stopPlayback(bool bIsAbort)
     }
 }
 
-NodePtr Canvas::getElementByID(const std::string& id)
+NodePtr Canvas::getElementByID(const UTF8String& id)
 {
     if (m_IDMap.find(id) != m_IDMap.end()) {
         return m_IDMap.find(id)->second;
@@ -110,7 +110,7 @@ void Canvas::registerNode(NodePtr pNode)
 
 void Canvas::addNodeID(NodePtr pNode)
 {
-    const string& id = pNode->getID();
+    const UTF8String& id = pNode->getID();
     if (id != "") {
         if (m_IDMap.find(id) != m_IDMap.end() &&
             m_IDMap.find(id)->second != pNode)
@@ -122,10 +122,10 @@ void Canvas::addNodeID(NodePtr pNode)
     }
 }
 
-void Canvas::removeNodeID(const string& id)
+void Canvas::removeNodeID(const UTF8String& id)
 {
     if (id != "") {
-        map<string, NodePtr>::iterator it;
+        map<UTF8String, NodePtr>::iterator it;
         it = m_IDMap.find(id);
         if (it != m_IDMap.end()) {
             m_IDMap.erase(it);

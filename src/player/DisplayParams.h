@@ -36,7 +36,7 @@ public:
     virtual ~DisplayParams();
 
     void calcWindowSizes();
-    void setConfig(const std::string& sFilename);
+    void setConfig(const UTF8String& sFilename);
     void setResolution(bool bFullscreen, int width, int height, int bpp);
     void setFullscreen(bool bFullscreen);
     void setBPP(int bpp);

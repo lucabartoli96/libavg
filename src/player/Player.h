@@ -31,6 +31,8 @@
 #include "../audio/AudioParams.h"
 #include "../graphics/GLConfig.h"
 
+#include "../base/UTF8String.h"
+
 #include <libxml/parser.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/thread.hpp>
@@ -97,8 +99,8 @@ class AVG_API Player: public Publisher
         bool isFullscreen();
         void setWindowFrame(bool bHasWindowFrame);
         void setWindowPos(int x=0, int y=0);
-        void setWindowTitle(const std::string& sTitle);
-        void setWindowConfig(const std::string& sFileName);
+        void setWindowTitle(const UTF8String& sTitle);
+        void setWindowConfig(const UTF8String& sFileName);
         
         void useGLES(bool bGLES);
         void setOGLOptions(bool bUsePOTTextures, bool bUsePixelBuffers, 
@@ -113,8 +115,8 @@ class AVG_API Player: public Publisher
         void assumePixelsPerMM(float ppmm);
         ImageCache* getImageCache();
 
-        CanvasPtr loadFile(const std::string& sFilename);
-        CanvasPtr loadString(const std::string& sAVG);
+        CanvasPtr loadFile(const UTF8String& sFilename);
+        CanvasPtr loadString(const UTF8String& sAVG);
 
         OffscreenCanvasPtr loadCanvasFile(const std::string& sFilename);
         OffscreenCanvasPtr loadCanvasString(const std::string& sAVG);
@@ -139,9 +141,9 @@ class AVG_API Player: public Publisher
         long long getFrameTime();
         float getFrameDuration();
 
-        NodePtr createNode(const std::string& sType, const py::dict& PyDict,
+        NodePtr createNode(const UTF8String& sType, const py::dict& PyDict,
                 const py::object& self=py::object());
-        NodePtr createNodeFromXmlString(const std::string& sXML);
+        NodePtr createNodeFromXmlString(const UTF8String& sXML);
         
         int setInterval(int time, PyObject * pyfunc);
         int setTimeout(int time, PyObject * pyfunc);
@@ -166,7 +168,7 @@ class AVG_API Player: public Publisher
         void showCursor(bool bShow);
         bool isCursorShown();
 
-        NodePtr getElementByID(const std::string& id);
+        NodePtr getElementByID(const UTF8String& id);
         AVGNodePtr getRootNode() const;
         void doFrame(bool bFirstFrame);
         float getFramerate();
@@ -180,7 +182,7 @@ class AVG_API Player: public Publisher
         bool getStopOnEscape() const;
         void setVolume(float volume);
         float getVolume() const;
-        std::string getConfigOption(const std::string& sSubsys, const std::string& sName)
+        UTF8String getConfigOption(const UTF8String& sSubsys, const UTF8String& sName)
                 const;
         bool isUsingGLES() const;
         bool areFullShadersSupported() const;
@@ -195,9 +197,9 @@ class AVG_API Player: public Publisher
         void endTraversingTree();
         bool isTraversingTree() const;
 
-        py::object loadPlugin(const std::string& name);
-        void setPluginPath(const std::string& newPath);
-        std::string getPluginPath() const;
+        py::object loadPlugin(const UTF8String& name);
+        void setPluginPath(const UTF8String& newPath);
+        UTF8String getPluginPath() const;
         
         void setEventHook(PyObject * pyfunc);
         PyObject * getEventHook() const;
@@ -217,8 +219,8 @@ class AVG_API Player: public Publisher
         void initAudio();
         void initMainCanvas(NodePtr pRootNode);
 
-        NodePtr loadMainNodeFromFile(const std::string& sFilename);
-        NodePtr loadMainNodeFromString(const std::string& sAVG);
+        NodePtr loadMainNodeFromFile(const UTF8String& sFilename);
+        NodePtr loadMainNodeFromString(const UTF8String& sAVG);
         NodePtr internalLoad(const std::string& sAVG, const std::string& sFilename);
         DisplayEnginePtr safeGetDisplayEngine();
 

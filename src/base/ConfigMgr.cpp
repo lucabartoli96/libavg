@@ -123,7 +123,7 @@ void ConfigMgr::addOption(const string& sSubsys, const string& sName,
     Subsys.push_back(ConfigOption(sName, sDefault));
 }
 
-const ConfigOptionVector* ConfigMgr::getOptions(const string& sSubsys) const
+const ConfigOptionVector* ConfigMgr::getOptions(const UTF8String& sSubsys) const
 {
     SubsysOptionMap::const_iterator it = m_SubsysOptionMap.find(sSubsys);
     if (it == m_SubsysOptionMap.end()) {
@@ -133,8 +133,8 @@ const ConfigOptionVector* ConfigMgr::getOptions(const string& sSubsys) const
     }
 }
 
-const string* ConfigMgr::getOption(const string& sSubsys, 
-        const string& sName) const
+const std::string* ConfigMgr::getOption(const UTF8String& sSubsys,
+        const UTF8String& sName) const
 {
     const ConfigOptionVector* pOptionVector = getOptions(sSubsys);
     if (!pOptionVector) {
