@@ -30,6 +30,8 @@
 #include "../base/IPlaybackEndListener.h"
 #include "../base/GLMHelper.h"
 
+#include "../base/UTF8String.h"
+
 #include <boost/shared_ptr.hpp>
 #include <boost/thread.hpp>
 
@@ -48,14 +50,14 @@ class GLContext;
 class AVG_API VideoWriter : public IFrameEndListener, IPlaybackEndListener  
 {
     public:
-        VideoWriter(CanvasPtr pCanvas, const std::string& sOutFileName,
+        VideoWriter(CanvasPtr pCanvas, const UTF8String& sOutFileName,
                 int frameRate=30, int qMin=3, int qMax=5, bool bSyncToPlayback=true);
         virtual ~VideoWriter();
         void stop();
         void pause();
         void play();
 
-        std::string getFileName() const;
+        UTF8String getFileName() const;
         int getFramerate() const;
         int getQMin() const;
         int getQMax() const;
@@ -74,7 +76,7 @@ class AVG_API VideoWriter : public IFrameEndListener, IPlaybackEndListener
         GLContext* m_pMainGLContext;
         FBOPtr m_pFBO;
         GPURGB2YUVFilterPtr m_pFilter;
-        std::string m_sOutFileName;
+        UTF8String m_sOutFileName;
         int m_FrameRate;
         int m_QMin;
         int m_QMax;

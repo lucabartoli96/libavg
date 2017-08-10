@@ -549,7 +549,7 @@ class AVTestCase(AVGTestCase):
     def testVideoWriter(self):
         
         def startWriter(fps, syncToPlayback):
-            self.videoWriter = avg.VideoWriter(canvas, "test.mov", fps, 3, 5, 
+            self.videoWriter = avg.VideoWriter(canvas, "test.mov", fps, 3, 5,
                     syncToPlayback)
 
         def stopWriter():
@@ -649,6 +649,14 @@ class AVTestCase(AVGTestCase):
         self.start(False,
                 [lambda: self.compareImage("test2VideosAtOnce1"),])
 
+    def testUnicodeAttributes(self):
+        try:
+            self.loadEmptyScene()
+            avg.VideoWriter(player.getMainCanvas(), u"test.mov", 30)
+            os.remove("test.mov")
+        except Exception:
+            # TODO Provide a fail message
+            self.fail("Failed")
 
 def AVTestSuite(tests):
     availableTests = [
@@ -672,7 +680,8 @@ def AVTestSuite(tests):
             "testVideoSeekAfterEOF",
             "testException",
             "testVideoWriter",
-            "test2VideosAtOnce",
+            "testUnicodeAttributes",
+            "test2VideosAtOnce"
             ]
     return createAVGTestSuite(availableTests, AVTestCase, tests)
 

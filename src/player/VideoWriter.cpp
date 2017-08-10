@@ -41,7 +41,7 @@ using namespace boost;
 
 namespace avg {
 
-VideoWriter::VideoWriter(CanvasPtr pCanvas, const string& sOutFileName, int frameRate,
+VideoWriter::VideoWriter(CanvasPtr pCanvas, const UTF8String& sOutFileName, int frameRate,
         int qMin, int qMax, bool bSyncToPlayback)
     : m_pCanvas(pCanvas),
       m_sOutFileName(sOutFileName),
@@ -154,7 +154,7 @@ void VideoWriter::play()
     m_PauseTime += (Player::get()->getFrameTime() - m_PauseStartTime);
 }
 
-std::string VideoWriter::getFileName() const
+UTF8String VideoWriter::getFileName() const
 {
     return m_sOutFileName;
 }

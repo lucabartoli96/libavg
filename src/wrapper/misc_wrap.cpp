@@ -133,9 +133,9 @@ void export_misc()
 
     class_<VideoWriter, boost::shared_ptr<VideoWriter>, boost::noncopyable>
             ("VideoWriter", no_init)
-        .def(init<CanvasPtr, const std::string&, int, int, int, bool>())
-        .def(init<CanvasPtr, const std::string&, int, int, int>())
-        .def(init<CanvasPtr, const std::string&, int>())
+        .def(init<CanvasPtr, const UTF8String&, int, int, int, bool>())
+        .def(init<CanvasPtr, const UTF8String&, int, int, int>())
+        .def(init<CanvasPtr, const UTF8String&, int>())
         .def("stop", &VideoWriter::stop)
         .def("pause", &VideoWriter::pause)
         .def("play", &VideoWriter::play)
